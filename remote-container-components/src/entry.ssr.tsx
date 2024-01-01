@@ -17,7 +17,11 @@ import {
 import { manifest } from "@qwik-client-manifest";
 import Root from "./root";
 
+import * as components from "~/routes/components";
+
 export default function (opts: RenderToStreamOptions) {
+  const url = new URL(opts.serverData?.url);
+  console.log("url", url);
   return renderToStream(<Root />, {
     manifest,
     ...opts,
