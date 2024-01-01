@@ -8,7 +8,7 @@ import {
   RuntimeComponent,
   RuntimeContext,
 } from "~/components/RuntimeComponent";
-import { ComponentA } from "@remote/AppComponents";
+import { ComponentA } from "@remotes/remote-components";
 
 export default component$(() => {
   const serverData = useServerData<string[]>("SERVER_DATA", ["ComponentA"]);

@@ -19,7 +19,7 @@
     "types": ["node", "vite/client"],
     "paths": {
       "~/*": ["./src/*"],
-      "@remote/*": ["./src/@remotes/*"]
+      "@remotes/*": ["./src/@remotes/*"]
     },
     "typeRoots": [
       "./node_modules/@types/",
