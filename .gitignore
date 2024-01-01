@@ -43,3 +43,4 @@ lerna-debug.log*
 .DS_Store
 remote-components/temp/remote-components.api.json
 remote-components/temp/remote-components.api.md
+*/@remotes/*

@@ -9,14 +9,14 @@ import {
   createContextId,
 } from "@builder.io/qwik";
 
-export const RuntimeContext = createContextId<{ base: string }>(
+export const RuntimeContext = createContextId<{ origin: string }>(
   "RuntimeContext"
 );
 
 export const RuntimeComponent = component$(
-  ({ name, clientOnly, fallback, base = "", ...props }) => {
+  ({ name, clientOnly, fallback, origin = "", ...props }) => {
     const contextConfig = useContext(RuntimeContext);
-    const baseUrl = contextConfig.base || base;
+    const originUrl = contextConfig.origin || origin;
     const csr = useSignal(false);
     useOnWindow(
       "DOMContentLoaded",
@@ -42,7 +42,7 @@ export const RuntimeComponent = component$(
       // get URL from config
       // can get default config from fetch or window.config etc
       const res = await fetch(
-        `${baseUrl}${base.endsWith("/") ? "" : "/"}${config}`
+        `${originUrl}${originUrl.endsWith("/") ? "" : "/"}${config}`
       );
       // cache response
       const html = await res.text();

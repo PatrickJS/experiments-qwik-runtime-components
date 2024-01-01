@@ -8,11 +8,12 @@ import {
   RuntimeComponent,
   RuntimeContext,
 } from "~/components/RuntimeComponent";
+import { ComponentA } from "@remote/AppComponents";
 
 export default component$(() => {
   const serverData = useServerData<string[]>("SERVER_DATA", ["ComponentA"]);
   useContextProvider(RuntimeContext, {
-    base: "http://localhost:4173",
+    origin: "http://localhost:4173",
   });
   return (
     <>
@@ -23,6 +24,10 @@ export default component$(() => {
       {serverData.map((name, index) => (
         <RuntimeComponent key={name + index} name={name} />
       ))}
+      <div>HELLO</div>
+      <ComponentA text="remote import type">
+        <div>HELLO inside componentA</div>
+      </ComponentA>
 
       <hr />
       <p>list of hardcoded remote container components</p>

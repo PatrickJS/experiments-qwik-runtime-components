@@ -19,10 +19,15 @@
     "types": ["node", "vite/client"],
     "paths": {
       "~/*": ["./src/*"],
-      "*": ["./src/@remotes/*"]
+      "@remote/*": ["./src/@remotes/*"]
     },
-    "typeRoots": ["./node_modules/@types", "./src/@types"]
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types",
+      "./node_modules",
+      "./src/@remotes"
+    ]
   },
-  "files": ["./.eslintrc.cjs", "src/components/RuntimeComponent.tsx"],
+  "files": ["./.eslintrc.cjs"],
   "include": ["src", "./*.d.ts", "./*.config.ts"]
 }

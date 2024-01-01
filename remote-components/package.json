@@ -4,7 +4,7 @@
   "description": "Create a reusable Qwik component library",
   "main": "./dist/index.qwik.mjs",
   "qwik": "./dist/index.qwik.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.qwik.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.qwik.mjs",
@@ -22,8 +22,9 @@
   "scripts": {
     "clean": "rimraf dist",
     "pre:build": "npm run clean",
-    "server": "node --no-warnings=ExperimentalWarning --loader ts-node/esm local-component-server/index.ts",
-    "build": "qwik build",
+    "server": "node local-component-server/index.mjs",
+    "build": "qwik build && npm run bundle.types",
+    "bundle.types": "npx api-extractor run --local",
     "build.lib": "vite build --mode lib",
     "build.types": "tsc --emitDeclarationOnly",
     "dev": "vite --host --mode ssr",
