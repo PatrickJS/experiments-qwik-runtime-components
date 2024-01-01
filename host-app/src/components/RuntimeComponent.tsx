@@ -7,6 +7,7 @@ import {
   $,
   useContext,
   createContextId,
+  useVisibleTask$,
 } from "@builder.io/qwik";
 
 export const RuntimeContext = createContextId<{ origin: string }>(
@@ -14,23 +15,25 @@ export const RuntimeContext = createContextId<{ origin: string }>(
 );
 
 export const RuntimeComponent = component$(
-  ({ name, clientOnly, fallback, origin = "", ...props }) => {
+  ({ name, clientOnly, fallback, origin = "", fakeLoading, ...props }) => {
     const contextConfig = useContext(RuntimeContext);
     const originUrl = contextConfig.origin || origin;
     const csr = useSignal(false);
-    useOnWindow(
-      "DOMContentLoaded",
-      $(() => {
-        csr.value = true;
-      })
-    );
+
+    // eslint-disable-next-line qwik/no-use-visible-task
+    useVisibleTask$(() => {
+      csr.value = true;
+    });
+
     const remoteCmp = useResource$(async ({ track }) => {
       if (clientOnly === true && csr.value === false) {
         track(() => csr.value);
         return;
       } else if ((clientOnly === true && csr.value) === true) {
         // fake loading
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (fakeLoading) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
       }
       const hostElement = "div";
       const attrs: any = [];

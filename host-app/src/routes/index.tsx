@@ -42,11 +42,13 @@ export default component$(() => {
       <p>client only container components</p>
       <RuntimeComponent
         name="ComponentC"
+        fakeLoading={true}
         fallback={<div>Loading...</div>}
         clientOnly={true}
       />
       <RuntimeComponent
         name="ComponentD"
+        fakeLoading={true}
         fallback={<div>Loading...</div>}
         clientOnly={true}
         onClick$={() => console.log("clicked host listener only")}
