@@ -25,8 +25,8 @@ export const RuntimeComponent = component$(
       })
     );
     const remoteCmp = useResource$(async ({ track }) => {
-      track(() => csr.value);
       if (clientOnly === true && csr.value === false) {
+        track(() => csr.value);
         return;
       } else if ((clientOnly === true && csr.value) === true) {
         // fake loading
