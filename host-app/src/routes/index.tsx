@@ -24,6 +24,9 @@ export default component$(() => {
       {serverData.map((name, index) => (
         <RuntimeComponent key={name + index} name={name} />
       ))}
+
+      <hr />
+      <p>hardcoded remote components that are grabbed at build-time</p>
       <div>HELLO</div>
       <ComponentA text="remote import type">
         <div>HELLO inside componentA</div>
