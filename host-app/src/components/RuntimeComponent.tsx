@@ -5,10 +5,18 @@ import {
   useResource$,
   useSignal,
   $,
+  useContext,
+  createContextId,
 } from "@builder.io/qwik";
+
+export const RuntimeContext = createContextId<{ base: string }>(
+  "RuntimeContext"
+);
 
 export const RuntimeComponent = component$(
   ({ name, clientOnly, fallback, base = "", ...props }) => {
+    const contextConfig = useContext(RuntimeContext);
+    const baseUrl = contextConfig.base || base;
     const csr = useSignal(false);
     useOnWindow(
       "DOMContentLoaded",
@@ -27,12 +35,14 @@ export const RuntimeComponent = component$(
       const hostElement = "div";
       const attrs: any = [];
       // add track if you want the component to be different on the client
-      const config = `?tagName=${hostElement}&attributes=${attrs.join(",")}`;
+      const config = `?component=${name}&tagName=${hostElement}&attributes=${attrs.join(
+        ","
+      )}`;
       // send outerHTML to replace
       // get URL from config
       // can get default config from fetch or window.config etc
       const res = await fetch(
-        `${base}${base.endsWith("/") ? "" : "/"}${name}${config}`
+        `${baseUrl}${base.endsWith("/") ? "" : "/"}${config}`
       );
       // cache response
       const html = await res.text();
