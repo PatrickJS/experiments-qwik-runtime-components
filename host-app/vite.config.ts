@@ -12,6 +12,7 @@ export default defineConfig(() => {
       remotePlugin({
         origin: "http://localhost:3000/",
         importModule: "@remote",
+        packageName: "AppComponents",
       }),
       qwikCity(),
       qwikVite(),
