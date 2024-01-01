@@ -39,5 +39,3 @@ lerna-debug.log*
 # Yarn
 .yarn/*
 !.yarn/releases
-.history
-.DS_Store
