@@ -1,10 +1,9 @@
 import { type RequestEvent } from "@builder.io/qwik-city";
 import { renderToString } from "@builder.io/qwik/server";
-import * as components from "~/components";
+import * as components from "~/routes/components";
 import { JSDOM } from "jsdom";
 
 export const onGet = async (req: RequestEvent) => {
-  req.url.hostname;
   console.log("onGet", req.params, req.query);
   const config = {
     tagName: req.query.get("tagName") || "div",
@@ -21,11 +20,10 @@ export const onGet = async (req: RequestEvent) => {
     return req.html(404, "<div>Not found</div>");
   }
   // @ts-ignore
-  const res = await renderToString(<Component />, {
+  const res = await renderToString(<Component {...config.attributes} />, {
     // base
     base: config.baseUrl,
     containerTagName: config.tagName,
-    containerAttributes: config.attributes,
   });
   // todo: change baseUrl
   return req.html(200, cleanHtml(res.html));

@@ -1,6 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import * as components from "~/components";
+import * as components from "~/routes/components";
 
 // TODO: auto generate docs on components
 export default component$(() => {

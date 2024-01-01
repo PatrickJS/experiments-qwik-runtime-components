@@ -6,13 +6,13 @@
 
 # Development
 node_modules
+*.local
 
 # Cache
 .cache
 .mf
-.vscode
 .rollup.cache
-tsconfig.*tsbuildinfo
+tsconfig.tsbuildinfo
 
 # Logs
 logs
@@ -24,7 +24,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Editor
-!.vscode/extensions.json
+.vscode/*
+!.vscode/launch.json
+!.vscode/*.code-snippets
+
 .idea
 .DS_Store
 *.suo

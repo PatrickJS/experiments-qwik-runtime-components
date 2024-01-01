@@ -8,7 +8,7 @@ import {
 } from "@builder.io/qwik";
 
 export const RuntimeComponent = component$(
-  ({ name, clientOnly, fallback, base = "" }) => {
+  ({ name, clientOnly, fallback, base = "", ...props }) => {
     const csr = useSignal(false);
     useOnWindow(
       "DOMContentLoaded",
@@ -24,8 +24,10 @@ export const RuntimeComponent = component$(
         // fake loading
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
+      const hostElement = "div";
+      const attrs: any = [];
       // add track if you want the component to be different on the client
-      const config = `?tagName=section&attributes=my-custom-attr=my-value,other-atr=otherValue`;
+      const config = `?tagName=${hostElement}&attributes=${attrs.join(",")}`;
       // send outerHTML to replace
       // get URL from config
       // can get default config from fetch or window.config etc
@@ -33,16 +35,16 @@ export const RuntimeComponent = component$(
         `${base}${base.endsWith("/") ? "" : "/"}${name}${config}`
       );
       // cache response
-      const text = await res.text();
-      return text;
+      const html = await res.text();
+      return html;
     });
     return clientOnly === true && fallback && csr.value === false ? (
       fallback
     ) : (
       <Resource
         value={remoteCmp}
-        onResolved={(text) => (
-          /* need outerHTML */ <div dangerouslySetInnerHTML={text} />
+        onResolved={(html) => (
+          /* need outerHTML */ <div dangerouslySetInnerHTML={html} {...props} />
         )}
       />
     );
