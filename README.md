@@ -1,4 +1,6 @@
-# Example of Runtime Component
+# Example of Runtime Components
+
+building on top of the original PoC https://github.com/PatrickJS/qwik-dynamic-cmp
 
 `/host-app/src/components/RuntimeComponent.tsx`
 > runtime config to fetch component
