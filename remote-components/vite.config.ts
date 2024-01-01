@@ -14,7 +14,7 @@ export default defineConfig(() => {
       target: "es2020",
       lib: {
         entry: "./src/index.tsx",
-        formats: ["es", "cjs"],
+        formats: ["es"],
         fileName: (format) => `index.qwik.${format === "es" ? "mjs" : "cjs"}`,
       },
       rollupOptions: {

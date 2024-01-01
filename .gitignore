@@ -41,3 +41,5 @@ lerna-debug.log*
 !.yarn/releases
 .history
 .DS_Store
+remote-components/temp/remote-components.api.json
+remote-components/temp/remote-components.api.md

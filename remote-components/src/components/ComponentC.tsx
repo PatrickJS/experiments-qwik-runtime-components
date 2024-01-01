@@ -1,5 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 
+/**
+ * @public
+ */
 export const ComponentC = component$(({ text = "cmp C" }: any) => {
   return (
     <div>
