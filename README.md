@@ -24,9 +24,9 @@ useContextProvider(RuntimeContext, {
 ```javascript
 import { ComponentA } from "@remote/AppComponents";
 
-      <ComponentA text="remote import type">
-        <div>HELLO inside componentA</div>
-      </ComponentA>
+<ComponentA text="remote import type">
+  <div>HELLO inside componentA</div>
+</ComponentA>
 
 ```
 this component needs the contents downloaded from `/remote-components/` using the plugin `/host-app/plugins/remote.mjs`
