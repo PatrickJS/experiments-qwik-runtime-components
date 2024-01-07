@@ -18,6 +18,10 @@ import { manifest } from "@qwik-client-manifest";
 import Root from "./root";
 
 export default function (opts: RenderToStreamOptions) {
+  const components = [
+    { _id: "-some-id-number-2-", name: "ComponentB" },
+    { _id: "-some-id-number-4-", name: "ComponentB" }
+  ];
   return renderToStream(<Root />, {
     manifest,
     ...opts,
@@ -28,7 +32,7 @@ export default function (opts: RenderToStreamOptions) {
     },
     serverData: {
       ...opts.serverData,
-      SERVER_DATA: ["ComponentB", "ComponentB"],
+      SERVER_DATA: components,
     },
   });
 }
