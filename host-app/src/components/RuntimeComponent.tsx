@@ -44,9 +44,15 @@ export const RuntimeComponent = component$(
       // send outerHTML to replace
       // get URL from config
       // can get default config from fetch or window.config etc
-      const res = await fetch(
+      const [err, res] = await fetch(
         `${originUrl}${originUrl.endsWith("/") ? "" : "/"}${config}`
-      );
+      )
+        .then((res) => [null, res])
+        .catch((err) => [err, null]);
+      if (err) {
+        console.error(err);
+        throw err;
+      }
       // cache response
       const html = await res.text();
       return html;

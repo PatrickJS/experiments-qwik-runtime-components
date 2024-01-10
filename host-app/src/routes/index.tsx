@@ -11,12 +11,15 @@ import {
 import { ComponentA } from "@remotes/remote-components";
 
 export default component$(() => {
-  const serverData = useServerData<string[]>("SERVER_DATA", [{
-    {
-      _id: '-some-id-number-0-',
-      name: "ComponentA",
-    }
-  ]);
+  const serverData = useServerData<Array<{ _id: string; name: string }>>(
+    "SERVER_DATA",
+    [
+      {
+        _id: "-some-id-number-0-",
+        name: "ComponentA",
+      },
+    ]
+  );
   useContextProvider(RuntimeContext, {
     origin: "http://localhost:4173",
   });
@@ -27,7 +30,7 @@ export default component$(() => {
       <hr />
       <p>list of remote container components from SSR data</p>
       {serverData.map((config) => (
-        <RuntimeComponent key={config.id} name={config.name} />
+        <RuntimeComponent key={config._id} name={config.name} />
       ))}
 
       <hr />
