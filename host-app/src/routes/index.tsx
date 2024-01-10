@@ -11,9 +11,10 @@ import {
 import { ComponentA } from "@remotes/remote-components";
 
 export default component$(() => {
-  const serverData = useServerData<Array<{ _id: string; name: string }>>(
+  const defaultConfig = [{ _id: "-some-id-number-0-", name: "ComponentA" }];
+  const serverData = useServerData<typeof defaultConfig>(
     "SERVER_DATA",
-    [{ _id: "-some-id-number-0-", name: "ComponentA" }]
+    defaultConfig
   );
   useContextProvider(RuntimeContext, {
     origin: "http://localhost:4173",
