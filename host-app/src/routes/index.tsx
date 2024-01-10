@@ -13,12 +13,7 @@ import { ComponentA } from "@remotes/remote-components";
 export default component$(() => {
   const serverData = useServerData<Array<{ _id: string; name: string }>>(
     "SERVER_DATA",
-    [
-      {
-        _id: "-some-id-number-0-",
-        name: "ComponentA",
-      },
-    ]
+    [{ _id: "-some-id-number-0-", name: "ComponentA" }]
   );
   useContextProvider(RuntimeContext, {
     origin: "http://localhost:4173",
