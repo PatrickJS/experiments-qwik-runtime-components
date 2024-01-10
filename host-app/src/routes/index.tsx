@@ -12,13 +12,13 @@ import { ComponentA } from "@remotes/remote-components";
 
 export default component$(() => {
   const defaultConfig = [{ _id: "-some-id-number-0-", name: "ComponentA" }];
-  const serverData = useServerData<typeof defaultConfig>(
-    "SERVER_DATA",
-    defaultConfig
-  );
+  // prettier-ignore
+  const serverData = useServerData<typeof defaultConfig>("SERVER_DATA", defaultConfig);
+
   useContextProvider(RuntimeContext, {
     origin: "http://localhost:4173",
   });
+
   return (
     <>
       <div>Hello World</div>
